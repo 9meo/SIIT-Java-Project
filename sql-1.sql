@@ -6,3 +6,6 @@ WHERE table_type = 'BASE TABLE'
 select * from employee;
 
 select * from payroll;
+
+DROP TABLE IF EXISTS payroll;
+DROP TABLE IF EXISTS employee;
