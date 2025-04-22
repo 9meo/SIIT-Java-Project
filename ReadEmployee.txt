@@ -1,0 +1,39 @@
+package ReadFile;
+
+import Company.Employee;
+
+import java.util.Scanner;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+
+public class ReadEmployee {
+
+	public static void main(String[] args) {
+		ArrayList<Employee> staff = new ArrayList<>();
+		
+		try (Scanner scanner = new Scanner(
+				Paths.get("C:\\Users\\Natsuda\\Dropbox\\Course\\MTS389\\Exercies\\L010_employee.csv"))) {
+		
+		    while (scanner.hasNextLine()) {
+		        String line = scanner.nextLine();
+		
+				String id, name, position;
+				
+		        String[] parts = line.split(",");
+				
+				id = parts[0].strip();
+				name = parts[1];
+				position = parts[2];
+				
+				Employee cur_staff = new Employee(id, name, position);
+				cur_staff = ReadPayroll.ReadPay(cur_staff); // Ex: Complete ReadPay function. 
+				
+				staff.add(cur_staff); // add current staff to the list
+		    }
+		} catch (Exception e) {
+		    System.out.println("Error: " + e.getMessage());
+		}
+		System.out.println("End Employee File");
+		Employee.print_List(staff);
+	}
+}
